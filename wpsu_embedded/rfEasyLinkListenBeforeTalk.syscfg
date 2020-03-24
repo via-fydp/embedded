@@ -1,0 +1,205 @@
+// These arguments were used when this file was generated. They will be automatically applied on subsequent loads 
+// via the GUI or CLI invocations. Run CLI with '--help' for additional information on how to override these arguments.
+// @cliArgs --device "CC1352P1F3RGZ" --package "RGZ" --part "Default" --product "simplelink_cc13x2_26x2_sdk@3.30.00.03"
+// @versions {"data":"2019083011","timestamp":"2019083011","tool":"1.2.952","templates":"2019083011"}
+
+var RF = scripting.addModule("/ti/drivers/RF");
+var Power = scripting.addModule("/ti/drivers/Power");
+var CCFG = scripting.addModule("/ti/devices/CCFG");
+var Board = scripting.addModule("/ti/drivers/Board");
+var DriverLib = scripting.addModule("/ti/devices/DriverLib");
+var GPIO = scripting.addModule("/ti/drivers/GPIO");
+var GPIO1 = GPIO.addInstance();
+var GPIO2 = GPIO.addInstance();
+var TRNG = scripting.addModule("/ti/drivers/TRNG");
+var TRNG1 = TRNG.addInstance();
+var easylink = scripting.addModule("/ti/easylink/easylink");
+var multi_stack_validate = scripting.addModule("/ti/easylink/multi_stack_validate");
+var UART = scripting.addModule("/ti/drivers/UART");
+var UART1 = UART.addInstance();
+var SPI = scripting.addModule("/ti/drivers/SPI");
+var DMA = scripting.addModule("/ti/drivers/DMA");
+var SPI1 = SPI.addInstance();
+var GPIO3 = GPIO.addInstance();
+var GPIO4 = GPIO.addInstance();
+var I2C = scripting.addModule("/ti/drivers/I2C");
+var I2C1 = I2C.addInstance();
+var GPIO5 = GPIO.addInstance();
+var GPIO6 = GPIO.addInstance();
+var GPIO7 = GPIO.addInstance();
+var GPIO8 = GPIO.addInstance();
+var GPIO9 = GPIO.addInstance();
+// DIO_28
+RF.DIO_28 = "CONFIG_RF_24GHZ";
+// DIO_29
+RF.DIO_29 = "CONFIG_RF_HIGH_PA";
+// DIO_30
+RF.DIO_30 = "CONFIG_RF_SUB1GHZ";
+// XOSC Cap Array Delta - Modify the high frequency oscillator cap-array, changing the frequency offset
+CCFG.xoscCapArrayDelta = 0xC1;
+// Enable Bootloader - Enable ROM Bootloader, for flashing from external host
+CCFG.enableBootloader = true;
+// Enable Bootloader Backdoor - When enabling the Bootloader Backdoor, the Bootloader can be activated externally by pulling a pin, even when a valid flash image is present. Note, enabling the backdoor allows an external host to read back a flash image from the device
+CCFG.enableBootloaderBackdoor = true;
+// Bootloader Backdoor DIO - DIO (pin) to trigger Bootloader backdoor, this pin is only needed at boot
+CCFG.dioBootloaderBackdoor = 15;
+// Trigger Level of Bootloader Backdoor - Active high or low on selected DIO to open boot loader backdoor
+CCFG.levelBootloaderBackdoor = "Active low";
+// LF Clock Source - Low frequency clock source
+CCFG.srcClkLF = "LF RCOSC";
+// Enable XOSC Cap array modification - Enable modification (delta) to XOSC cap-array
+CCFG.xoscCapArray = true;
+// Name
+CCFG.ccfgTemplate.$name = "ti_devices_CCFGTemplate0";
+// Mode - Select the GPIO mode
+GPIO1.mode = "Output";
+// Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
+GPIO1.$name = "CONFIG_GPIO_RLED";
+// Assign pin
+GPIO1.gpioPin.$assign = "DIO_6"; // pin number - 11
+// Name
+GPIO1.pinInstance.$name = "CONFIG_PIN_RLED";
+// Mode - Select the GPIO mode
+GPIO2.mode = "Output";
+// Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
+GPIO2.$name = "CONFIG_GPIO_GLED";
+// Assign pin
+GPIO2.gpioPin.$assign = "DIO_7"; // pin number - 12
+// Name
+GPIO2.pinInstance.$name = "CONFIG_PIN_GLED";
+// Name - The C/C++ identifier used in applications as the index parameter passed to TRNG runtime APIs
+TRNG1.$name = "CONFIG_TRNG_EASYLINK";
+// Random Number Generation Function - If a channel is busy, transmission will backoff for a random period. This function generates the random numbers for this functionality
+easylink.randNumGenFxn = "getRandomNumber";
+// Address Size (bytes) - Defines the address size used for all Tx/Rx operations
+easylink.addrSize = 0;
+// Backoff Time Units (us) - The back-off time units in microseconds
+easylink.backoffTimeunits = 500;
+// PHY Type - Selects the PHY/setting
+easylink.radioConfigEasylinkPhyCustom.phyType868 = "slr5kbps2gfsk";
+// High PA - Select if the High Power Amplifier on the device should be used
+easylink.radioConfigEasylinkPhyCustom.highPA = false;
+// TX Power (dBm) - TX Power
+easylink.radioConfigEasylinkPhyCustom.txPower = "9";
+// Name
+easylink.radioConfigEasylinkPhyCustom.codeExportConfig.$name = "ti_radioconfig_code_export_param0";
+// PA table Export Method - Select how PA table is to be exported
+easylink.radioConfigEasylinkPhyCustom.codeExportConfig.paExport = "combined";
+// Name - The C/C++ identifier used in applications as the index parameter passed to UART runtime APIs
+UART1.$name = "UART_0";
+// Flow Control - Enable hardware flow control
+UART1.flowControl = true;
+// Name
+UART1.txPinInstance.$name = "CONFIG_PIN_0";
+// Name
+UART1.rxPinInstance.$name = "CONFIG_PIN_1";
+// Name
+UART1.uart.$name = "MyUART1";
+// Use Peripheral
+UART1.uart.$assign = "UART0";
+// Assign pin
+UART1.uart.txPin.$assign = "DIO_12"; // pin number - 18
+// Assign pin
+UART1.uart.rxPin.$assign = "DIO_13"; // pin number - 19
+// Assign pin
+UART1.uart.ctsPin.$assign = "DIO_11"; // pin number - 17
+// Assign pin
+UART1.uart.rtsPin.$assign = "DIO_10"; // pin number - 16
+// Name
+UART1.ctsPinInstance.$name = "CONFIG_PIN_2";
+// Name
+UART1.rtsPinInstance.$name = "CONFIG_PIN_3";
+// Name - The C/C++ identifier used in applications as the index parameter passed to SPI runtime APIs
+SPI1.$name = "SPI_0";
+// Name
+SPI1.spi.$name = "MySSI1";
+// Use Peripheral
+SPI1.spi.$assign = "SSI0";
+// Assign pin
+SPI1.spi.sclkPin.$assign = "DIO_8"; // pin number - 14
+// Assign pin
+SPI1.spi.misoPin.$assign = "DIO_9"; // pin number - 15
+// Assign pin
+SPI1.spi.mosiPin.$assign = "DIO_16"; // pin number - 26
+// Assign pin
+SPI1.spi.dmaRxChannel.$assign = "DMA_CH3";
+// Assign pin
+SPI1.spi.dmaTxChannel.$assign = "DMA_CH4";
+// Name
+SPI1.sclkPinInstance.$name = "CONFIG_PIN_4";
+// Name
+SPI1.misoPinInstance.$name = "CONFIG_PIN_5";
+// Name
+SPI1.mosiPinInstance.$name = "CONFIG_PIN_6";
+// Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
+GPIO3.$name = "SS1";
+// Mode - Select the GPIO mode
+GPIO3.mode = "Output";
+// Initial Output State - Specifies the initial output state
+GPIO3.initialOutputState = "High";
+// Assign pin
+GPIO3.gpioPin.$assign = "DIO_23"; // pin number - 36
+// Name
+GPIO3.pinInstance.$name = "CONFIG_PIN_7";
+// Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
+GPIO4.$name = "SS2";
+// Mode - Select the GPIO mode
+GPIO4.mode = "Output";
+// Initial Output State - Specifies the initial output state
+GPIO4.initialOutputState = "High";
+// Assign pin
+GPIO4.gpioPin.$assign = "DIO_14"; // pin number - 20
+// Name
+GPIO4.pinInstance.$name = "CONFIG_PIN_8";
+// Name - The C/C++ identifier used in applications as the index parameter passed to I2C runtime APIs
+I2C1.$name = "BATT_MONITOR";
+// Name
+I2C1.i2c.$name = "MyI2C1";
+// Use Peripheral
+I2C1.i2c.$assign = "I2C0";
+// Assign pin
+I2C1.i2c.sdaPin.$assign = "DIO_22"; // pin number - 32
+// Assign pin
+I2C1.i2c.sclPin.$assign = "DIO_21"; // pin number - 31
+// Name
+I2C1.sdaPinInstance.$name = "CONFIG_PIN_9";
+// Name
+I2C1.clkPinInstance.$name = "CONFIG_PIN_10";
+// Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
+GPIO5.$name = "REG_PG";
+// Assign pin
+GPIO5.gpioPin.$assign = "DIO_24"; // pin number - 37
+// Name
+GPIO5.pinInstance.$name = "CONFIG_PIN_11";
+// Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
+GPIO6.$name = "CHARGE_STAT";
+// Assign pin
+GPIO6.gpioPin.$assign = "DIO_19"; // pin number - 29
+// Name
+GPIO6.pinInstance.$name = "CONFIG_PIN_13";
+// Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
+GPIO7.$name = "RF_900";
+// Mode - Select the GPIO mode
+GPIO7.mode = "Output";
+// Initial Output State - Specifies the initial output state
+GPIO7.initialOutputState = "High";
+// Assign pin
+GPIO7.gpioPin.$assign = "DIO_30"; // pin number - 43
+// Name
+GPIO7.pinInstance.$name = "CONFIG_PIN_14";
+// Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
+GPIO8.$name = "RF_24";
+// Mode - Select the GPIO mode
+GPIO8.mode = "Output";
+// Assign pin
+GPIO8.gpioPin.$assign = "DIO_29"; // pin number - 42
+// Name
+GPIO8.pinInstance.$name = "CONFIG_PIN_15";
+// Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
+GPIO9.$name = "RF_PA";
+// Mode - Select the GPIO mode
+GPIO9.mode = "Output";
+// Assign pin
+GPIO9.gpioPin.$assign = "DIO_28"; // pin number - 41
+// Name
+GPIO9.pinInstance.$name = "CONFIG_PIN_16";
