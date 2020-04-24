@@ -1,34 +1,4 @@
-/*
- * Copyright (c) 2017-2019, Texas Instruments Incorporated
- * All rights reserved.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions
- * are met:
- *
- * *  Redistributions of source code must retain the above copyright
- *    notice, this list of conditions and the following disclaimer.
- *
- * *  Redistributions in binary form must reproduce the above copyright
- *    notice, this list of conditions and the following disclaimer in the
- *    documentation and/or other materials provided with the distribution.
- *
- * *  Neither the name of Texas Instruments Incorporated nor the names of
- *    its contributors may be used to endorse or promote products derived
- *    from this software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
- * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
- * PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR
- * CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL,
- * EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
- * PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
- * OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
- * WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
- * OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE,
- * EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- */
+
 
 /*
  *  ======== rfEasyLinkListenBeforeTalk.c ========
@@ -49,6 +19,7 @@
 #include <ti/drivers/PIN.h>
 #include <ti/drivers/SPI.h>
 #include <ti/drivers/GPIO.h>
+#include <ti/drivers/ADC.h>
 #include <ti/drivers/power/PowerCC26XX.h>
 
 /* Board Header files */
@@ -71,8 +42,10 @@
 #include <ti/drivers/TRNG.h>
 #include <ti/drivers/cryptoutils/cryptokey/CryptoKeyPlaintext.h>
 
+//custom includes
 #include "wpsu.h"
 #include "pressure_sensor.h"
+#include "battery_monitor.h"
 
 #define RFEASYLINKLBT_TASK_STACK_SIZE       (1024U)
 #define RFEASYLINKLBT_TASK_PRIORITY         (2U)
@@ -81,7 +54,9 @@
 #define KEY_LENGTH_BYTES                    (4U)
 #define MAX_TRNG_RETRIES                    (2U) // Max attempts to generate a random number
 
-
+#define TRANSMIT_PERIOD 100 //milliseconds
+#define MAX_VOLTAGE 4100
+#define MIN_VOLTAGE 3500
 
 /*
  * Set to 1 if you want to attempt to retransmit a packet that couldn't be
@@ -97,10 +72,6 @@ Task_Struct lbtTask;                 /* not static so you can see in ROV */
 static Task_Params lbtTaskParams;
 static uint8_t lbtTaskStack[RFEASYLINKLBT_TASK_STACK_SIZE];
 
-/* PIN driver handle */
-static PIN_Handle pinHandle;
-static PIN_State pinState;
-
 /* TRNG driver handle */
 static TRNG_Handle trngHandle;
 
@@ -108,20 +79,9 @@ static TRNG_Handle trngHandle;
 static CryptoKey entropyKey;
 uint8_t entropyBuffer[KEY_LENGTH_BYTES];
 
-/*
- * Application LED pin configuration table:
- *  - All board LEDs are off
- */
-PIN_Config pinTable[] = {
-    CONFIG_PIN_GLED | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MAX,
-    CONFIG_PIN_RLED | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MAX,
-    PIN_TERMINATE
-};
-
-static uint16_t seqNumber;
-
 static Semaphore_Handle lbtDoneSem;
 
+ADC_Handle adcHandle;
 
 uint32_t getRandomNumber( void )
 {
@@ -147,7 +107,8 @@ void lbtDoneCb(EasyLink_Status status)
     if (status == EasyLink_Status_Success)
     {
         /* Toggle GLED to indicate TX */
-        PIN_setOutputValue(pinHandle, CONFIG_PIN_GLED, !PIN_getOutputValue(CONFIG_PIN_GLED));
+        GPIO_write(RLED, GPIO_read(GLED));
+        GPIO_write(GLED, !GPIO_read(GLED));
 #if RFEASYLINKLBT_RETRANSMIT_PACKETS
         bAttemptRetransmission = false;
 #endif // RFEASYLINKLBT_RETRANSMIT_PACKETS
@@ -155,7 +116,8 @@ void lbtDoneCb(EasyLink_Status status)
     else if (status == EasyLink_Status_Busy_Error)
     {
         /* Toggle RLED to indicate maximum retries reached */
-        PIN_setOutputValue(pinHandle, CONFIG_PIN_RLED, !PIN_getOutputValue(CONFIG_PIN_RLED));
+        GPIO_write(GLED, 0);
+        GPIO_write(RLED, !GPIO_read(RLED));
 
 #if RFEASYLINKLBT_RETRANSMIT_PACKETS
         bAttemptRetransmission = true;
@@ -163,9 +125,9 @@ void lbtDoneCb(EasyLink_Status status)
     }
     else
     {
-        /* Toggle GLED and RLED to indicate error */
-        PIN_setOutputValue(pinHandle, CONFIG_PIN_GLED, !PIN_getOutputValue(CONFIG_PIN_GLED));
-        PIN_setOutputValue(pinHandle, CONFIG_PIN_RLED, !PIN_getOutputValue(CONFIG_PIN_RLED));
+        /* Set red LED to indicate error */
+        GPIO_write(GLED, 0);
+        GPIO_write(RLED, 1);
     }
 
     Semaphore_post(lbtDoneSem);
@@ -177,17 +139,26 @@ static void rfEasyLinkLbtFnx(UArg arg0, UArg arg1)
     EasyLink_TxPacket lbtPacket = { {0}, 0, 0, {0} };
 
     /* Create a semaphore */
-    Semaphore_Params params;
+    Semaphore_Params sem_params;
     Error_Block eb;
 
     /* Init params */
-    Semaphore_Params_init(&params);
+    Semaphore_Params_init(&sem_params);
     Error_init(&eb);
 
     pressure_init();
 
+    ADC_init();
+
+    ADC_Params adc_params;
+    ADC_Params_init(&adc_params);
+    adc_params.isProtected = true;
+    adcHandle = ADC_open(BATTERY_VOLTAGE, &adc_params);
+
+    //battery_init();
+
     /* Create a semaphore instance */
-    lbtDoneSem = Semaphore_create(0, &params, &eb);
+    lbtDoneSem = Semaphore_create(0, &sem_params, &eb);
     if(lbtDoneSem == NULL)
     {
         System_abort("Semaphore creation failed");
@@ -224,46 +195,55 @@ static void rfEasyLinkLbtFnx(UArg arg0, UArg arg1)
 
     while(1)
     {
-            // zero out the packet
-            memset(&lbtPacket, 0, sizeof(EasyLink_TxPacket));
+        wpsu_packet_t tx_packet;
+        tx_packet.uuid = WPSU_UUID; //TODO change to slightly more dynamic UUID instead of hardcoded
 
-            wpsu_packet_t tx_packet;
-            tx_packet.uuid = WPSU_UUID;
+        //fill out the packet with data
+        int16_t pressure1 = pressure_read(SS1); //TODO change from blocking to callback
+        int16_t pressure2 = pressure_read(SS2);
+        tx_packet.pressure[0] = (pressure1 + pressure2) / 2; //average
+        tx_packet.pressure_diff[0] = ((pressure1 > pressure2) ? (pressure1 - pressure2) : (pressure2 - pressure1));
 
-            //read pressure
-            int16_t pressure1 = pressure_read(SS1);
-            int16_t pressure2 = pressure_read(SS2);
-            tx_packet.pressure[0] = (pressure1 + pressure2) / 2; //average
-            tx_packet.pressure_diff[0] = ((pressure1 > pressure2) ? (pressure1 - pressure2) : (pressure2 - pressure1)); //difference
+        //get battery info
+        uint16_t adc_result;
+        ADC_convert(adcHandle, &adc_result);
 
-            memcpy(&lbtPacket.payload, &tx_packet, sizeof(wpsu_packet_t));
+        //millivolt value
+        adc_result = ADC_convertToMicroVolts(adcHandle, adc_result) / 500;
 
-            lbtPacket.len = sizeof(wpsu_packet_t);
+        //set limits
+        adc_result = adc_result >= MAX_VOLTAGE ? MAX_VOLTAGE : adc_result;
+        adc_result = adc_result <= MIN_VOLTAGE ? MIN_VOLTAGE : adc_result;
 
-            /*
-             * Address filtering is enabled by default on the Rx device with the
-             * an address of 0xAA. This device must set the dstAddr accordingly.
-             */
-            lbtPacket.dstAddr[0] = 0xaa;
+        //linear scaling to percentage
+        tx_packet.battery = (adc_result - MIN_VOLTAGE) * 100 / (MAX_VOLTAGE - MIN_VOLTAGE);
 
-            /* Set Tx absolute time to current time + 100ms */
-            if(EasyLink_getAbsTime(&absTime) != EasyLink_Status_Success)
-            {
-                // Problem getting absolute time
-            }
-            lbtPacket.absTime = absTime + EasyLink_ms_To_RadioTime(500);
+        //get charging state
+        tx_packet.faults = 0;
+        tx_packet.faults |= GPIO_read(CHARGE_STAT) ? 0 : FAULT_CHARGING;
 
+        //copy packet over to the tx buffer
+        memcpy(&lbtPacket.payload, &tx_packet, sizeof(wpsu_packet_t));
+        lbtPacket.len = sizeof(wpsu_packet_t);
+        lbtPacket.dstAddr[0] = 0xaa;
+
+        //set timeout period
+        if(EasyLink_getAbsTime(&absTime) != EasyLink_Status_Success)
+        {
+            // Problem getting absolute time
+            //TODO error handling
+        }
+
+        lbtPacket.absTime = absTime + EasyLink_ms_To_RadioTime(TRANSMIT_PERIOD);
         EasyLink_transmitCcaAsync(&lbtPacket, lbtDoneCb);
 
         /* Wait forever for TX to complete */
         Semaphore_pend(lbtDoneSem, BIOS_WAIT_FOREVER);
-
     }
 }
 
-void lbtTask_init(PIN_Handle inPinHandle)
+void lbtTask_init()
 {
-    pinHandle = inPinHandle;
 
     Task_Params_init(&lbtTaskParams);
     lbtTaskParams.stackSize = RFEASYLINKLBT_TASK_STACK_SIZE;
@@ -285,15 +265,7 @@ int main(void)
     /* Set power dependency for the TRNG */
     Power_setDependency(PowerCC26XX_PERIPH_TRNG);
 
-    /* Open LED pins */
-    pinHandle = PIN_open(&pinState, pinTable);
-    Assert_isTrue(pinHandle != NULL, NULL);
-
-    /* Clear LED pins */
-    PIN_setOutputValue(pinHandle, CONFIG_PIN_GLED, 0);
-    PIN_setOutputValue(pinHandle, CONFIG_PIN_RLED, 0);
-
-    lbtTask_init(pinHandle);
+    lbtTask_init();
 
     /* Start BIOS */
     BIOS_start();

@@ -196,12 +196,13 @@ rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/sour
 rfEasylinkListenBeforeTalk.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/SPI.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/GPIO.h
+rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/ADC.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/power/PowerCC26XX.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/dpl/HwiP.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/dpl/ClockP.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/Power.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/utils/List.h
-rfEasylinkListenBeforeTalk.obj: C:/Users/scholvat/FYDP/rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_drivers_config.h
+rfEasylinkListenBeforeTalk.obj: C:/Users/scholvat/FYDP/wpsu_embedded/Debug/syscfg/ti_drivers_config.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/devices/DeviceFamily.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/I2C.h
 rfEasylinkListenBeforeTalk.obj: ../easylink/EasyLink.h
@@ -214,16 +215,17 @@ rfEasylinkListenBeforeTalk.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/devices/cc13x2_cc26x2/driverlib/rf_prop_cmd.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/devices/cc13x2_cc26x2/driverlib/rf_ble_cmd.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h
-rfEasylinkListenBeforeTalk.obj: C:/Users/scholvat/FYDP/rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_easylink_config.h
-rfEasylinkListenBeforeTalk.obj: C:/Users/scholvat/FYDP/rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_radio_config.h
+rfEasylinkListenBeforeTalk.obj: C:/Users/scholvat/FYDP/wpsu_embedded/Debug/syscfg/ti_easylink_config.h
+rfEasylinkListenBeforeTalk.obj: C:/Users/scholvat/FYDP/wpsu_embedded/Debug/syscfg/ti_radio_config.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/TRNG.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/cryptoutils/cryptokey/CryptoKey.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/cryptoutils/cryptokey/CryptoKeyPlaintext.h
-rfEasylinkListenBeforeTalk.obj: ../wpsu.h
+rfEasylinkListenBeforeTalk.obj: C:/Users/scholvat/FYDP/common/wpsu.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h
 rfEasylinkListenBeforeTalk.obj: ../pressure_sensor.h
 rfEasylinkListenBeforeTalk.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h
+rfEasylinkListenBeforeTalk.obj: ../battery_monitor.h
 
 ../rfEasylinkListenBeforeTalk.c: 
 C:/ti/ccs920/xdctools_3_60_01_27_core/packages/xdc/std.h: 
@@ -421,12 +423,13 @@ C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/PIN.h:
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/SPI.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/GPIO.h: 
+C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/ADC.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/power/PowerCC26XX.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/dpl/HwiP.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/dpl/ClockP.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/Power.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/utils/List.h: 
-C:/Users/scholvat/FYDP/rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_drivers_config.h: 
+C:/Users/scholvat/FYDP/wpsu_embedded/Debug/syscfg/ti_drivers_config.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/devices/DeviceFamily.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/I2C.h: 
 ../easylink/EasyLink.h: 
@@ -439,13 +442,14 @@ C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/string.h:
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/devices/cc13x2_cc26x2/driverlib/rf_prop_cmd.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/devices/cc13x2_cc26x2/driverlib/rf_ble_cmd.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h: 
-C:/Users/scholvat/FYDP/rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_easylink_config.h: 
-C:/Users/scholvat/FYDP/rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_radio_config.h: 
+C:/Users/scholvat/FYDP/wpsu_embedded/Debug/syscfg/ti_easylink_config.h: 
+C:/Users/scholvat/FYDP/wpsu_embedded/Debug/syscfg/ti_radio_config.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/TRNG.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/cryptoutils/cryptokey/CryptoKey.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/cryptoutils/cryptokey/CryptoKeyPlaintext.h: 
-../wpsu.h: 
+C:/Users/scholvat/FYDP/common/wpsu.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h: 
 ../pressure_sensor.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h: 
+../battery_monitor.h: 

@@ -49,7 +49,7 @@ void pneumatics_init(){
 
 char pneumatics_charge_main(){
     if(!pneumatics_initted) return 0;
-    GPIO_write(MAIN_DRAIN_VALVE, 0);
+    GPIO_write(MAIN_DRAIN_VALVE, 1);
     GPIO_write(MAIN_INPUT_VALVE, 1);
     return 1;
 }

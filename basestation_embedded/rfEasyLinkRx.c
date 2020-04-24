@@ -137,12 +137,17 @@ static void rfEasyLinkRxFnx(UArg arg0, UArg arg1)
             /* Toggle RLED to indicate RX */
             PIN_setOutputValue(pinHandle, CONFIG_PIN_RLED,!PIN_getOutputValue(CONFIG_PIN_RLED));
 
-            sprintf(sprintf_buffer, "pressure_%u_%u_%d_%d",
+            sprintf(sprintf_buffer,
+                    "pressure_%u_%u_%d_%d\n"
+                    "battery_%u_%u_charging_%u\n",
                     wpsu_packet.uuid,
-                    wpsu_packet.faults,
+                    wpsu_packet.faults & ~(FAULT_CHARGING),
                     wpsu_packet.pressure[0]+wpsu_packet.pressure_diff[0],
-                    wpsu_packet.pressure[0]-wpsu_packet.pressure_diff[0]);
-            server_print_ln(sprintf_buffer);
+                    wpsu_packet.pressure[0]-wpsu_packet.pressure_diff[0],
+                    wpsu_packet.uuid,
+                    wpsu_packet.battery,
+                    !!(wpsu_packet.faults & FAULT_CHARGING));
+            server_print_str(sprintf_buffer);
         }
         else
         {

@@ -19,8 +19,7 @@ C_SRCS += \
 ./syscfg/ti_devices_config.c \
 ./syscfg/ti_radio_config.c \
 ./syscfg/ti_drivers_config.c \
-../server_comm.c \
-../wpsu.c 
+../server_comm.c 
 
 GEN_FILES += \
 ./syscfg/ti_easylink_config.c \
@@ -39,8 +38,7 @@ C_DEPS += \
 ./syscfg/ti_devices_config.d \
 ./syscfg/ti_radio_config.d \
 ./syscfg/ti_drivers_config.d \
-./server_comm.d \
-./wpsu.d 
+./server_comm.d 
 
 OBJS += \
 ./CC1352P_2_LAUNCHXL_fxns.obj \
@@ -50,8 +48,7 @@ OBJS += \
 ./syscfg/ti_devices_config.obj \
 ./syscfg/ti_radio_config.obj \
 ./syscfg/ti_drivers_config.obj \
-./server_comm.obj \
-./wpsu.obj 
+./server_comm.obj 
 
 GEN_MISC_FILES += \
 ./syscfg/ti_easylink_config.h \
@@ -70,8 +67,7 @@ OBJS__QUOTED += \
 "syscfg\ti_devices_config.obj" \
 "syscfg\ti_radio_config.obj" \
 "syscfg\ti_drivers_config.obj" \
-"server_comm.obj" \
-"wpsu.obj" 
+"server_comm.obj" 
 
 GEN_MISC_FILES__QUOTED += \
 "syscfg\ti_easylink_config.h" \
@@ -87,8 +83,7 @@ C_DEPS__QUOTED += \
 "syscfg\ti_devices_config.d" \
 "syscfg\ti_radio_config.d" \
 "syscfg\ti_drivers_config.d" \
-"server_comm.d" \
-"wpsu.d" 
+"server_comm.d" 
 
 GEN_FILES__QUOTED += \
 "syscfg\ti_easylink_config.c" \
@@ -104,8 +99,7 @@ C_SRCS__QUOTED += \
 "./syscfg/ti_devices_config.c" \
 "./syscfg/ti_radio_config.c" \
 "./syscfg/ti_drivers_config.c" \
-"../server_comm.c" \
-"../wpsu.c" 
+"../server_comm.c" 
 
 SYSCFG_SRCS__QUOTED += \
 "../rfEasyLinkRx.syscfg" 

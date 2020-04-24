@@ -25,8 +25,8 @@ extern "C"
 #include <ti/drivers/rf/RF.h>
 
 #ifndef CCFG_FORCE_VDDR_HH
-// Use default VDDR trim
-#define CCFG_FORCE_VDDR_HH  0x0
+// Force VDDR voltage to the factory HH setting (FCFG1..VDDR_TRIM_HH)
+#define CCFG_FORCE_VDDR_HH  0x1
 #endif
 
 //! \brief Defines the address that will accompany each packet sent from this

@@ -17,7 +17,7 @@ pressure_sensor.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drive
 pressure_sensor.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h
 pressure_sensor.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stddef.h
 pressure_sensor.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/GPIO.h
-pressure_sensor.obj: C:/Users/scholvat/FYDP/rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_drivers_config.h
+pressure_sensor.obj: C:/Users/scholvat/FYDP/wpsu_embedded/Debug/syscfg/ti_drivers_config.h
 pressure_sensor.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/devices/DeviceFamily.h
 pressure_sensor.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/I2C.h
 pressure_sensor.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/PIN.h
@@ -39,7 +39,7 @@ C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/SPI.h:
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stddef.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/GPIO.h: 
-C:/Users/scholvat/FYDP/rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_drivers_config.h: 
+C:/Users/scholvat/FYDP/wpsu_embedded/Debug/syscfg/ti_drivers_config.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/devices/DeviceFamily.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/I2C.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source/ti/drivers/PIN.h: 

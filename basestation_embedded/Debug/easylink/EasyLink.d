@@ -26,11 +26,11 @@ easylink/EasyLink.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/in
 easylink/EasyLink.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/cc13x2_cc26x2/driverlib/rf_prop_cmd.h
 easylink/EasyLink.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/cc13x2_cc26x2/driverlib/rf_ble_cmd.h
 easylink/EasyLink.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h
-easylink/EasyLink.obj: C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_easylink_config.h
-easylink/EasyLink.obj: C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_drivers_config.h
+easylink/EasyLink.obj: C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_easylink_config.h
+easylink/EasyLink.obj: C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_drivers_config.h
 easylink/EasyLink.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/PIN.h
 easylink/EasyLink.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/limits.h
-easylink/EasyLink.obj: C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_radio_config.h
+easylink/EasyLink.obj: C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_radio_config.h
 easylink/EasyLink.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/kernel/tirtos/packages/ti/sysbios/knl/Clock.h
 easylink/EasyLink.obj: C:/ti/ccs920/xdctools_3_60_01_27_core/packages/xdc/std.h
 easylink/EasyLink.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdarg.h
@@ -230,11 +230,11 @@ C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/string.h:
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/cc13x2_cc26x2/driverlib/rf_prop_cmd.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/cc13x2_cc26x2/driverlib/rf_ble_cmd.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h: 
-C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_easylink_config.h: 
-C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_drivers_config.h: 
+C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_easylink_config.h: 
+C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_drivers_config.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/PIN.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/limits.h: 
-C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_radio_config.h: 
+C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_radio_config.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/kernel/tirtos/packages/ti/sysbios/knl/Clock.h: 
 C:/ti/ccs920/xdctools_3_60_01_27_core/packages/xdc/std.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdarg.h: 

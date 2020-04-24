@@ -18,7 +18,6 @@ ORDERED_OBJS += \
 "./syscfg/ti_radio_config.obj" \
 "./syscfg/ti_drivers_config.obj" \
 "./server_comm.obj" \
-"./wpsu.obj" \
 "./easylink/EasyLink.obj" \
 "../CC1352P_2_LAUNCHXL_TIRTOS.cmd" \
 -l"ti/display/lib/display.aem4f" \
@@ -138,45 +137,45 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.out \
+basestation_embedded.out \
 
 EXE_OUTPUTS__QUOTED += \
-"rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.out" \
+"basestation_embedded.out" \
 
 BIN_OUTPUTS += \
-rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.hex \
+basestation_embedded.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.hex" \
+"basestation_embedded.hex" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.out"
+	@$(MAKE) --no-print-directory -Onone "basestation_embedded.out"
 
 dependents:
 	-cd C:/Users/scholvat/FYDP/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs_3_40_00_02/Debug && $(MAKE) all
 
 # Tool invocations
-rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/scholvat/FYDP/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs_3_40_00_02/Debug/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs_3_40_00_02.lib
+basestation_embedded.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/scholvat/FYDP/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs_3_40_00_02/Debug/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs_3_40_00_02.lib
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.map" -i"C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source" -i"C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/kernel/tirtos/packages" -i"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs_linkInfo.xml" --rom_model -o "rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.out" $(ORDERED_OBJS)
+	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"basestation_embedded.map" -i"C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source" -i"C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/kernel/tirtos/packages" -i"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="basestation_embedded_linkInfo.xml" --rom_model -o "basestation_embedded.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
-rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.hex: $(EXE_OUTPUTS)
+basestation_embedded.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: ARM Hex Utility'
-	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armhex"  -o "rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armhex"  -o "basestation_embedded.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "CC1352P_2_LAUNCHXL_fxns.obj" "pneumatics.obj" "rfEasyLinkRx.obj" "syscfg\ti_easylink_config.obj" "syscfg\ti_devices_config.obj" "syscfg\ti_radio_config.obj" "syscfg\ti_drivers_config.obj" "server_comm.obj" "wpsu.obj" "easylink\EasyLink.obj" 
-	-$(RM) "CC1352P_2_LAUNCHXL_fxns.d" "pneumatics.d" "rfEasyLinkRx.d" "syscfg\ti_easylink_config.d" "syscfg\ti_devices_config.d" "syscfg\ti_radio_config.d" "syscfg\ti_drivers_config.d" "server_comm.d" "wpsu.d" "easylink\EasyLink.d" 
+	-$(RM) "CC1352P_2_LAUNCHXL_fxns.obj" "pneumatics.obj" "rfEasyLinkRx.obj" "syscfg\ti_easylink_config.obj" "syscfg\ti_devices_config.obj" "syscfg\ti_radio_config.obj" "syscfg\ti_drivers_config.obj" "server_comm.obj" "easylink\EasyLink.obj" 
+	-$(RM) "CC1352P_2_LAUNCHXL_fxns.d" "pneumatics.d" "rfEasyLinkRx.d" "syscfg\ti_easylink_config.d" "syscfg\ti_devices_config.d" "syscfg\ti_radio_config.d" "syscfg\ti_drivers_config.d" "server_comm.d" "easylink\EasyLink.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

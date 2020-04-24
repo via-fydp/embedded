@@ -15,4 +15,5 @@
 	<templateProperties value="id=rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.projectspec.rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs,buildProfile=release,isHybrid=true"/>
 	<origin value="C:\ti\simplelink_cc13x2_26x2_sdk_3_30_00_03\examples\rtos\CC1352P_2_LAUNCHXL\easylink\rfEasyLinkListenBeforeTalk\tirtos\ccs\rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.projectspec"/>
 	<filesToOpen value=""/>
+	<isTargetManual value="false"/>
 </projectOptions>

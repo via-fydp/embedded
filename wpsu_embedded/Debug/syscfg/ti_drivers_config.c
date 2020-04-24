@@ -16,6 +16,51 @@
 
 #include "ti_drivers_config.h"
 
+/*
+ *  =============================== ADC ===============================
+ */
+
+#include <ti/drivers/ADC.h>
+#include <ti/drivers/adc/ADCCC26XX.h>
+
+#define CONFIG_ADC_COUNT 1
+
+/*
+ *  ======== adcCC26xxObjects ========
+ */
+ADCCC26XX_Object adcCC26xxObjects[CONFIG_ADC_COUNT];
+
+/*
+ *  ======== adcCC26xxHWAttrs ========
+ */
+const ADCCC26XX_HWAttrs adcCC26xxHWAttrs[CONFIG_ADC_COUNT] = {
+    /* BATTERY_VOLTAGE */
+    {
+        .adcDIO              = IOID_26,
+        .adcCompBInput       = ADC_COMPB_IN_AUXIO4,
+        .refSource           = ADCCC26XX_FIXED_REFERENCE,
+        .samplingDuration    = ADCCC26XX_SAMPLING_DURATION_2P7_US,
+        .inputScalingEnabled = true,
+        .triggerSource       = ADCCC26XX_TRIGGER_MANUAL,
+        .returnAdjustedVal   = false
+    },
+};
+
+/*
+ *  ======== ADC_config ========
+ */
+const ADC_Config ADC_config[CONFIG_ADC_COUNT] = {
+    /* BATTERY_VOLTAGE */
+    {
+        .fxnTablePtr = &ADCCC26XX_fxnTable,
+        .object = &adcCC26xxObjects[BATTERY_VOLTAGE],
+        .hwAttrs = &adcCC26xxHWAttrs[BATTERY_VOLTAGE]
+    },
+};
+
+const uint_least8_t ADC_count = CONFIG_ADC_COUNT;
+
+
 
 /*
  *  =============================== DMA ===============================
@@ -54,10 +99,10 @@ const UDMACC26XX_Config UDMACC26XX_config[1] = {
  *  Array of Pin configurations
  */
 GPIO_PinConfig gpioPinConfigs[] = {
-    /* CONFIG_GPIO_RLED */
+    /* RLED */
     GPIOCC26XX_DIO_06 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
-    /* CONFIG_GPIO_GLED */
-    GPIOCC26XX_DIO_07 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
+    /* GLED */
+    GPIOCC26XX_DIO_07 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_HIGH,
     /* SS1 */
     GPIOCC26XX_DIO_23 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_HIGH,
     /* SS2 */
@@ -65,13 +110,15 @@ GPIO_PinConfig gpioPinConfigs[] = {
     /* REG_PG */
     GPIOCC26XX_DIO_24 | GPIO_CFG_IN_NOPULL | GPIO_CFG_IN_INT_NONE,
     /* CHARGE_STAT */
-    GPIOCC26XX_DIO_19 | GPIO_CFG_IN_NOPULL | GPIO_CFG_IN_INT_NONE,
+    GPIOCC26XX_DIO_20 | GPIO_CFG_IN_PU | GPIO_CFG_IN_INT_NONE,
     /* RF_900 */
     GPIOCC26XX_DIO_30 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_HIGH,
     /* RF_24 */
     GPIOCC26XX_DIO_29 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
     /* RF_PA */
     GPIOCC26XX_DIO_28 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_LOW,
+    /* BATT_MONITOR_EN */
+    GPIOCC26XX_DIO_05 | GPIO_CFG_OUT_STD | GPIO_CFG_OUT_STR_MED | GPIO_CFG_OUT_HIGH,
 };
 
 /*
@@ -83,9 +130,9 @@ GPIO_PinConfig gpioPinConfigs[] = {
  *  (GPIO.optimizeCallbackTableSize = true)
  */
 GPIO_CallbackFxn gpioCallbackFunctions[] = {
-    /* CONFIG_GPIO_RLED */
+    /* RLED */
     NULL,
-    /* CONFIG_GPIO_GLED */
+    /* GLED */
     NULL,
     /* SS1 */
     NULL,
@@ -101,6 +148,8 @@ GPIO_CallbackFxn gpioCallbackFunctions[] = {
     NULL,
     /* RF_PA */
     NULL,
+    /* BATT_MONITOR_EN */
+    NULL,
 };
 
 /*
@@ -109,8 +158,8 @@ GPIO_CallbackFxn gpioCallbackFunctions[] = {
 const GPIOCC26XX_Config GPIOCC26XX_config = {
     .pinConfigs = (GPIO_PinConfig *)gpioPinConfigs,
     .callbacks = (GPIO_CallbackFxn *)gpioCallbackFunctions,
-    .numberOfPinConfigs = 9,
-    .numberOfCallbacks = 9,
+    .numberOfPinConfigs = 10,
+    .numberOfCallbacks = 10,
     .intPriority = (~0)
 };
 
@@ -134,7 +183,7 @@ I2CCC26XX_Object i2cCC26xxObjects[CONFIG_I2C_COUNT];
  *  ======== i2cCC26xxHWAttrs ========
  */
 const I2CCC26XX_HWAttrsV1 i2cCC26xxHWAttrs[CONFIG_I2C_COUNT] = {
-    /* I2C_0 */
+    /* BATT_MONITOR */
     {
         .baseAddr    = I2C0_BASE,
         .powerMngrId = PowerCC26XX_PERIPH_I2C0,
@@ -150,11 +199,11 @@ const I2CCC26XX_HWAttrsV1 i2cCC26xxHWAttrs[CONFIG_I2C_COUNT] = {
  *  ======== I2C_config ========
  */
 const I2C_Config I2C_config[CONFIG_I2C_COUNT] = {
-    /* I2C_0 */
+    /* BATT_MONITOR */
     {
         .fxnTablePtr = &I2CCC26XX_fxnTable,
-        .object      = &i2cCC26xxObjects[I2C_0],
-        .hwAttrs     = &i2cCC26xxHWAttrs[I2C_0]
+        .object      = &i2cCC26xxObjects[BATT_MONITOR],
+        .hwAttrs     = &i2cCC26xxHWAttrs[BATT_MONITOR]
     },
 };
 
@@ -179,18 +228,18 @@ const PIN_Config BoardGpioInitTable[] = {
     CONFIG_PIN_5 | PIN_INPUT_EN | PIN_NOPULL | PIN_IRQ_DIS,
     /* Parent Signal: SPI_0 MOSI, (DIO16) */
     CONFIG_PIN_6 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
-    /* Parent Signal: I2C_0 SDA, (DIO22) */
-    CONFIG_PIN_9 | PIN_INPUT_EN | PIN_PULLDOWN | PIN_IRQ_DIS,
-    /* Parent Signal: I2C_0 SCL, (DIO21) */
+    /* Parent Signal: BATT_MONITOR SDA, (DIO22) */
+    CONFIG_PIN_9 | PIN_INPUT_EN | PIN_NOPULL | PIN_IRQ_DIS,
+    /* Parent Signal: BATT_MONITOR SCL, (DIO21) */
     CONFIG_PIN_10 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
     /* Parent Signal: REG_PG GPIO Pin, (DIO24) */
     CONFIG_PIN_11 | PIN_INPUT_EN | PIN_NOPULL | PIN_IRQ_DIS,
-    /* Parent Signal: CHARGE_STAT GPIO Pin, (DIO19) */
-    CONFIG_PIN_13 | PIN_INPUT_EN | PIN_NOPULL | PIN_IRQ_DIS,
-    /* Parent Signal: CONFIG_GPIO_RLED GPIO Pin, (DIO6) */
+    /* Parent Signal: BATTERY_VOLTAGE ADC Pin, (DIO26) */
+    CONFIG_PIN_17 | PIN_INPUT_EN | PIN_NOPULL | PIN_IRQ_DIS,
+    /* Parent Signal: RLED GPIO Pin, (DIO6) */
     CONFIG_PIN_RLED | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
-    /* Parent Signal: CONFIG_GPIO_GLED GPIO Pin, (DIO7) */
-    CONFIG_PIN_GLED | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
+    /* Parent Signal: GLED GPIO Pin, (DIO7) */
+    CONFIG_PIN_12 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_HIGH | PIN_PUSHPULL | PIN_DRVSTR_MED,
     /* Parent Signal: UART_0 CTS, (DIO11) */
     CONFIG_PIN_2 | PIN_INPUT_EN | PIN_PULLDOWN | PIN_IRQ_DIS,
     /* Parent Signal: UART_0 RTS, (DIO10) */
@@ -199,12 +248,16 @@ const PIN_Config BoardGpioInitTable[] = {
     CONFIG_PIN_7 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_HIGH | PIN_PUSHPULL | PIN_DRVSTR_MED,
     /* Parent Signal: SS2 GPIO Pin, (DIO14) */
     CONFIG_PIN_8 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_HIGH | PIN_PUSHPULL | PIN_DRVSTR_MED,
+    /* Parent Signal: CHARGE_STAT GPIO Pin, (DIO20) */
+    CONFIG_PIN_13 | PIN_INPUT_EN | PIN_PULLUP | PIN_IRQ_DIS,
     /* Parent Signal: RF_900 GPIO Pin, (DIO30) */
     CONFIG_PIN_14 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_HIGH | PIN_PUSHPULL | PIN_DRVSTR_MED,
     /* Parent Signal: RF_24 GPIO Pin, (DIO29) */
     CONFIG_PIN_15 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
     /* Parent Signal: RF_PA GPIO Pin, (DIO28) */
     CONFIG_PIN_16 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_LOW | PIN_PUSHPULL | PIN_DRVSTR_MED,
+    /* Parent Signal: BATT_MONITOR_EN GPIO Pin, (DIO5) */
+    CONFIG_PIN_18 | PIN_GPIO_OUTPUT_EN | PIN_GPIO_HIGH | PIN_PUSHPULL | PIN_DRVSTR_MED,
 
     PIN_TERMINATE
 };

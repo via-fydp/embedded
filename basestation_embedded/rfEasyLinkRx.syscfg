@@ -76,8 +76,12 @@ UART1.$name = "CONFIG_UART_0";
 UART1.$hardware = system.deviceData.board.components.XDS110UART;
 // Name
 UART1.txPinInstance.$name = "CONFIG_PIN_1";
+// Output State - Initial Output State
+UART1.txPinInstance.outputState = "High";
 // Name
 UART1.rxPinInstance.$name = "CONFIG_PIN_2";
+// Pull - Pull up/down
+UART1.rxPinInstance.pull = "None";
 // Name
 UART1.uart.$name = "MyUART1";
 // Use Peripheral
@@ -100,8 +104,10 @@ GPIO4.gpioPin.$assign = "boosterpack.9"; // DIO21
 GPIO4.pinInstance.$name = "CONFIG_PIN_4";
 // Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
 GPIO5.$name = "MAIN_INPUT_VALVE";
+// Mode - Select the GPIO mode
+GPIO5.mode = "Output";
 // Assign pin
-GPIO5.gpioPin.$assign = "boosterpack.18"; // DIO11
+GPIO5.gpioPin.$assign = "boosterpack.19"; // DIO19
 // Name
 GPIO5.pinInstance.$name = "CONFIG_PIN_5";
 // Name - The C/C++ identifier used in applications as the index parameter passed to GPIO runtime APIs
@@ -117,7 +123,7 @@ GPIO7.$name = "BRAKE_EMERG_VALVE";
 // Mode - Select the GPIO mode
 GPIO7.mode = "Output";
 // Assign pin
-GPIO7.gpioPin.$assign = "boosterpack.19"; // DIO19
+GPIO7.gpioPin.$assign = "boosterpack.18"; // DIO11
 // Name
 GPIO7.pinInstance.$name = "CONFIG_PIN_7";
 // Suggest solution

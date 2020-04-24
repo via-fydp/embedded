@@ -11,6 +11,7 @@ GEN_CMDS__FLAG := -l"C:/Users/scholvat/FYDP/tirtos_builds_CC1352P_2_LAUNCHXL_rel
 
 ORDERED_OBJS += \
 "./CC1352P_2_LAUNCHXL_fxns.obj" \
+"./battery_monitor.obj" \
 "./debug.obj" \
 "./pressure_sensor.obj" \
 "./syscfg/ti_easylink_config.obj" \
@@ -18,7 +19,6 @@ ORDERED_OBJS += \
 "./syscfg/ti_devices_config.obj" \
 "./syscfg/ti_drivers_config.obj" \
 "./rfEasylinkListenBeforeTalk.obj" \
-"./wpsu.obj" \
 "./easylink/EasyLink.obj" \
 "../CC1352P_2_LAUNCHXL_TIRTOS.cmd" \
 -l"ti/display/lib/display.aem4f" \
@@ -138,45 +138,45 @@ endif
 
 # Add inputs and outputs from these tool invocations to the build variables 
 EXE_OUTPUTS += \
-rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.out \
+wpsu_embedded.out \
 
 EXE_OUTPUTS__QUOTED += \
-"rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.out" \
+"wpsu_embedded.out" \
 
 BIN_OUTPUTS += \
-rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.hex \
+wpsu_embedded.hex \
 
 BIN_OUTPUTS__QUOTED += \
-"rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.hex" \
+"wpsu_embedded.hex" \
 
 
 # All Target
 all: $(OBJS) $(CMD_SRCS) $(GEN_CMDS)
-	@$(MAKE) --no-print-directory -Onone "rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.out"
+	@$(MAKE) --no-print-directory -Onone "wpsu_embedded.out"
 
 dependents:
 	-cd C:/Users/scholvat/FYDP/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs/Debug && $(MAKE) all
 
 # Tool invocations
-rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/scholvat/FYDP/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs/Debug/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs.lib
+wpsu_embedded.out: $(OBJS) $(CMD_SRCS) $(GEN_CMDS) C:/Users/scholvat/FYDP/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs/Debug/tirtos_builds_CC1352P_2_LAUNCHXL_release_ccs.lib
 	@echo 'Building target: "$@"'
 	@echo 'Invoking: ARM Linker'
-	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.map" -i"C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source" -i"C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/kernel/tirtos/packages" -i"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs_linkInfo.xml" --rom_model -o "rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.out" $(ORDERED_OBJS)
+	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armcl" -mv7M4 --code_state=16 --float_support=FPv4SPD16 -me --define=DeviceFamily_CC13X2 -g --diag_warning=225 --diag_warning=255 --diag_wrap=off --display_error_number --gen_func_subsections=on -z -m"wpsu_embedded.map" -i"C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/source" -i"C:/ti/simplelink_cc13x2_26x2_sdk_3_30_00_03/kernel/tirtos/packages" -i"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/lib" --diag_wrap=off --display_error_number --warn_sections --xml_link_info="wpsu_embedded_linkInfo.xml" --rom_model -o "wpsu_embedded.out" $(ORDERED_OBJS)
 	@echo 'Finished building target: "$@"'
 	@echo ' '
 
-rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.hex: $(EXE_OUTPUTS)
+wpsu_embedded.hex: $(EXE_OUTPUTS)
 	@echo 'Building files: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo 'Invoking: ARM Hex Utility'
-	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armhex"  -o "rfEasyLinkListenBeforeTalk_CC1352P_2_LAUNCHXL_tirtos_ccs.hex" $(EXE_OUTPUTS__QUOTED)
+	"C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/bin/armhex"  -o "wpsu_embedded.hex" $(EXE_OUTPUTS__QUOTED)
 	@echo 'Finished building: $(strip $(EXE_OUTPUTS__QUOTED))'
 	@echo ' '
 
 # Other Targets
 clean:
 	-$(RM) $(GEN_MISC_FILES__QUOTED)$(BIN_OUTPUTS__QUOTED)$(GEN_FILES__QUOTED)$(EXE_OUTPUTS__QUOTED)
-	-$(RM) "CC1352P_2_LAUNCHXL_fxns.obj" "debug.obj" "pressure_sensor.obj" "syscfg\ti_easylink_config.obj" "syscfg\ti_radio_config.obj" "syscfg\ti_devices_config.obj" "syscfg\ti_drivers_config.obj" "rfEasylinkListenBeforeTalk.obj" "wpsu.obj" "easylink\EasyLink.obj" 
-	-$(RM) "CC1352P_2_LAUNCHXL_fxns.d" "debug.d" "pressure_sensor.d" "syscfg\ti_easylink_config.d" "syscfg\ti_radio_config.d" "syscfg\ti_devices_config.d" "syscfg\ti_drivers_config.d" "rfEasylinkListenBeforeTalk.d" "wpsu.d" "easylink\EasyLink.d" 
+	-$(RM) "CC1352P_2_LAUNCHXL_fxns.obj" "battery_monitor.obj" "debug.obj" "pressure_sensor.obj" "syscfg\ti_easylink_config.obj" "syscfg\ti_radio_config.obj" "syscfg\ti_devices_config.obj" "syscfg\ti_drivers_config.obj" "rfEasylinkListenBeforeTalk.obj" "easylink\EasyLink.obj" 
+	-$(RM) "CC1352P_2_LAUNCHXL_fxns.d" "battery_monitor.d" "debug.d" "pressure_sensor.d" "syscfg\ti_easylink_config.d" "syscfg\ti_radio_config.d" "syscfg\ti_devices_config.d" "syscfg\ti_drivers_config.d" "rfEasylinkListenBeforeTalk.d" "easylink\EasyLink.d" 
 	-$(RMDIR) $(GEN_MISC_DIRS__QUOTED)
 	-@echo 'Finished clean'
 	-@echo ' '

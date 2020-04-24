@@ -38,11 +38,11 @@ extern "C" {
 #define PANEL_LED                   2
 /* DIO21 */
 #define MAIN_DRAIN_VALVE            3
-/* DIO11 */
+/* DIO19 */
 #define MAIN_INPUT_VALVE            4
 /* DIO5 */
 #define BRAKE_INPUT_VALVE           5
-/* DIO19 */
+/* DIO11 */
 #define BRAKE_EMERG_VALVE           6
 
 /* LEDs are active high */
@@ -69,8 +69,6 @@ extern const PIN_Config BoardGpioInitTable[];
 #define CONFIG_PIN_1    0x0000000d
 /* XDS110 UART, Parent Signal: CONFIG_UART_0 RX, (DIO12) */
 #define CONFIG_PIN_2    0x0000000c
-/* Parent Signal: MAIN_INPUT_VALVE GPIO Pin, (DIO11) */
-#define CONFIG_PIN_5    0x0000000b
 /* CONFIG_RF_24GHZ (DIO28) */
 #define CONFIG_RF_24GHZ    0x0000001c
 /* CONFIG_RF_HIGH_PA (DIO29) */
@@ -85,10 +83,12 @@ extern const PIN_Config BoardGpioInitTable[];
 #define CONFIG_PIN_3    0x0000001a
 /* Parent Signal: MAIN_DRAIN_VALVE GPIO Pin, (DIO21) */
 #define CONFIG_PIN_4    0x00000015
+/* Parent Signal: MAIN_INPUT_VALVE GPIO Pin, (DIO19) */
+#define CONFIG_PIN_5    0x00000013
 /* Parent Signal: BRAKE_INPUT_VALVE GPIO Pin, (DIO5) */
 #define CONFIG_PIN_6    0x00000005
-/* Parent Signal: BRAKE_EMERG_VALVE GPIO Pin, (DIO19) */
-#define CONFIG_PIN_7    0x00000013
+/* Parent Signal: BRAKE_EMERG_VALVE GPIO Pin, (DIO11) */
+#define CONFIG_PIN_7    0x0000000b
 
 
 /*

@@ -27,20 +27,28 @@ extern "C" {
 
 
 /*
+ *  ======== ADC ========
+ */
+
+/* DIO26 */
+#define BATTERY_VOLTAGE             0
+
+
+/*
  *  ======== GPIO ========
  */
 
 /* DIO6 */
-#define CONFIG_GPIO_RLED            0
+#define RLED                        0
 /* DIO7 */
-#define CONFIG_GPIO_GLED            1
+#define GLED                        1
 /* DIO23 */
 #define SS1                         2
 /* DIO14 */
 #define SS2                         3
 /* DIO24 */
 #define REG_PG                      4
-/* DIO19 */
+/* DIO20 */
 #define CHARGE_STAT                 5
 /* DIO30 */
 #define RF_900                      6
@@ -48,6 +56,8 @@ extern "C" {
 #define RF_24                       7
 /* DIO28 */
 #define RF_PA                       8
+/* DIO5 */
+#define BATT_MONITOR_EN             9
 
 /* LEDs are active high */
 #define CONFIG_GPIO_LED_ON  (1)
@@ -65,18 +75,18 @@ extern "C" {
  *  SCL: DIO21
  *  SDA: DIO22
  */
-#define I2C_0                       0
+#define BATT_MONITOR                0
 
 /* ======== I2C Addresses and Speeds ======== */
 #include <ti/drivers/I2C.h>
 
-/* ---- I2C_0 I2C bus components ---- */
+/* ---- BATT_MONITOR I2C bus components ---- */
 
-/* no components connected to I2C_0 */
+/* no components connected to BATT_MONITOR */
 
 /* max speed unspecified, defaulting to 100 Kbps */
-#define I2C_0_MAXSPEED   (100U) /* Kbps */
-#define I2C_0_MAXBITRATE ((I2C_BitRate)I2C_100kHz)
+#define BATT_MONITOR_MAXSPEED   (100U) /* Kbps */
+#define BATT_MONITOR_MAXBITRATE ((I2C_BitRate)I2C_100kHz)
 
 
 /*
@@ -99,18 +109,18 @@ extern const PIN_Config BoardGpioInitTable[];
 #define CONFIG_PIN_5    0x00000009
 /* Parent Signal: SPI_0 MOSI, (DIO16) */
 #define CONFIG_PIN_6    0x00000010
-/* Parent Signal: I2C_0 SDA, (DIO22) */
+/* Parent Signal: BATT_MONITOR SDA, (DIO22) */
 #define CONFIG_PIN_9    0x00000016
-/* Parent Signal: I2C_0 SCL, (DIO21) */
+/* Parent Signal: BATT_MONITOR SCL, (DIO21) */
 #define CONFIG_PIN_10    0x00000015
 /* Parent Signal: REG_PG GPIO Pin, (DIO24) */
 #define CONFIG_PIN_11    0x00000018
-/* Parent Signal: CHARGE_STAT GPIO Pin, (DIO19) */
-#define CONFIG_PIN_13    0x00000013
-/* Parent Signal: CONFIG_GPIO_RLED GPIO Pin, (DIO6) */
+/* Parent Signal: BATTERY_VOLTAGE ADC Pin, (DIO26) */
+#define CONFIG_PIN_17    0x0000001a
+/* Parent Signal: RLED GPIO Pin, (DIO6) */
 #define CONFIG_PIN_RLED    0x00000006
-/* Parent Signal: CONFIG_GPIO_GLED GPIO Pin, (DIO7) */
-#define CONFIG_PIN_GLED    0x00000007
+/* Parent Signal: GLED GPIO Pin, (DIO7) */
+#define CONFIG_PIN_12    0x00000007
 /* Parent Signal: UART_0 CTS, (DIO11) */
 #define CONFIG_PIN_2    0x0000000b
 /* Parent Signal: UART_0 RTS, (DIO10) */
@@ -119,12 +129,16 @@ extern const PIN_Config BoardGpioInitTable[];
 #define CONFIG_PIN_7    0x00000017
 /* Parent Signal: SS2 GPIO Pin, (DIO14) */
 #define CONFIG_PIN_8    0x0000000e
+/* Parent Signal: CHARGE_STAT GPIO Pin, (DIO20) */
+#define CONFIG_PIN_13    0x00000014
 /* Parent Signal: RF_900 GPIO Pin, (DIO30) */
 #define CONFIG_PIN_14    0x0000001e
 /* Parent Signal: RF_24 GPIO Pin, (DIO29) */
 #define CONFIG_PIN_15    0x0000001d
 /* Parent Signal: RF_PA GPIO Pin, (DIO28) */
 #define CONFIG_PIN_16    0x0000001c
+/* Parent Signal: BATT_MONITOR_EN GPIO Pin, (DIO5) */
+#define CONFIG_PIN_18    0x00000005
 
 
 

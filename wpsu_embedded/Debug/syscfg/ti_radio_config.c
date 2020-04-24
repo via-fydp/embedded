@@ -46,7 +46,7 @@
 // Sync Word: 0x0
 // Sync Word Length: 32 Bits
 // Optimise PA-table for board/band: LAUNCHXL-CC1352P1
-// TX Power (dBm): 9
+// TX Power (dBm): 14
 // Whitening: CC1101/CC2500 compatible
 
 // TI-RTOS RF Mode Object
@@ -114,6 +114,9 @@ uint32_t pOverrides_slr5kbps2gfsk_0[] =
     // override_prop_common.json
     // DC/DC regulator: In Tx with 14 dBm PA setting, use DCDCCTL5[3:0]=0xF (DITHER_EN=1 and IPEAK=7). In Rx, use default settings.
     (uint32_t)0x00F788D3,
+    // override_patable_14dbm.json
+    // Tx: Set PA trim to max to maximize its output power (in ADI0, set PACTL0=0xF8)
+    ADI_REG_OVERRIDE(0,12,0xF8),
     (uint32_t)0xFFFFFFFF
 };
 
@@ -183,7 +186,7 @@ rfc_CMD_PROP_RADIO_DIV_SETUP_PA_t RF_cmdPropRadioDivSetup_slr5kbps2gfsk_0 =
     .config.biasMode = 0x1,
     .config.analogCfgMode = 0x0,
     .config.bNoFsPowerUp = 0x0,
-    .txPower = 0x3EDC,
+    .txPower = 0x013F,
     .pRegOverride = pOverrides_slr5kbps2gfsk_0,
     .centerFreq = 0x0393,
     .intFreq = 0x8000,

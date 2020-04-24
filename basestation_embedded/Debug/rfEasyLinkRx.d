@@ -204,7 +204,7 @@ rfEasyLinkRx.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include
 rfEasyLinkRx.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/PWM.h
 rfEasyLinkRx.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/UART.h
 rfEasyLinkRx.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/GPIO.h
-rfEasyLinkRx.obj: C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_drivers_config.h
+rfEasyLinkRx.obj: C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_drivers_config.h
 rfEasyLinkRx.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/DeviceFamily.h
 rfEasyLinkRx.obj: ../easylink/EasyLink.h
 rfEasyLinkRx.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/rf/RF.h
@@ -218,10 +218,10 @@ rfEasyLinkRx.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include
 rfEasyLinkRx.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/cc13x2_cc26x2/driverlib/rf_prop_cmd.h
 rfEasyLinkRx.obj: C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/cc13x2_cc26x2/driverlib/rf_ble_cmd.h
 rfEasyLinkRx.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h
-rfEasyLinkRx.obj: C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_easylink_config.h
+rfEasyLinkRx.obj: C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_easylink_config.h
 rfEasyLinkRx.obj: ../server_comm.h
 rfEasyLinkRx.obj: ../pneumatics.h
-rfEasyLinkRx.obj: ../wpsu.h
+rfEasyLinkRx.obj: C:/Users/scholvat/FYDP/common/wpsu.h
 rfEasyLinkRx.obj: C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h
 
 ../rfEasyLinkRx.c: 
@@ -428,7 +428,7 @@ C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdbool.h:
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/PWM.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/UART.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/GPIO.h: 
-C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_drivers_config.h: 
+C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_drivers_config.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/DeviceFamily.h: 
 ../easylink/EasyLink.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/drivers/rf/RF.h: 
@@ -442,8 +442,8 @@ C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/string.h:
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/cc13x2_cc26x2/driverlib/rf_prop_cmd.h: 
 C:/ti/simplelink_cc13x2_26x2_sdk_3_40_00_02/source/ti/devices/cc13x2_cc26x2/driverlib/rf_ble_cmd.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h: 
-C:/Users/scholvat/FYDP/rfEasyLinkRx_CC1352P_2_LAUNCHXL_tirtos_ccs/Debug/syscfg/ti_easylink_config.h: 
+C:/Users/scholvat/FYDP/basestation_embedded/Debug/syscfg/ti_easylink_config.h: 
 ../server_comm.h: 
 ../pneumatics.h: 
-../wpsu.h: 
+C:/Users/scholvat/FYDP/common/wpsu.h: 
 C:/ti/ccs920/ccs/tools/compiler/ti-cgt-arm_18.12.3.LTS/include/stdlib.h: 
